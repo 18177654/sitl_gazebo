@@ -20,7 +20,7 @@ void GazeboForcesMomentsActuatorsPlugin::Load(physics::ModelPtr _model, sdf::Ele
     getSdfParam<double>(_sdf, "virtualYawMomentArm", virt_yaw_mom_arm_, virt_yaw_mom_arm_, true);
 
     getSdfParam<double>(_sdf, "maxMotorThrust", max_motor_thrust_, max_motor_thrust_, false);
-    
+
     if (_sdf->HasElement("motor_models")) {
         sdf::ElementPtr motor_models = _sdf->GetElement("motor_models");
         sdf::ElementPtr motor = motor_models->GetElement("motor");
@@ -34,7 +34,7 @@ void GazeboForcesMomentsActuatorsPlugin::Load(physics::ModelPtr _model, sdf::Ele
                     // Convert string to vector of doubles
                     std::stringstream ss(coeff_str); // Turn the string into a stream.
                     std::string tok;
-                    
+
                     char *endptr;
                     int coeff_num = 0;
                     while(getline(ss, tok, ' ')) {
@@ -54,7 +54,7 @@ void GazeboForcesMomentsActuatorsPlugin::Load(physics::ModelPtr _model, sdf::Ele
     if(num_motors <= 0 && max_motor_thrust_ <= 0) {
         gzthrow("[gazebo_forces_moments_actuators_plugin] Please provide either the maxMotorThrust or the motor 3rd order models.");
     }
-    
+
     if(!IsValidConfig(copter_config_))
         gzthrow("[gazebo_forces_moments_actuators_plugin] The multicopter configuration \"" << copter_config_ << "\" is not supported.");
 
@@ -152,10 +152,10 @@ void GazeboForcesMomentsActuatorsPlugin::ApplyMotorModel(double commands[], doub
                 motors[i] = 0;
                 continue;
             }
-            
+
             // Convert to PWM
             pwm = (commands[i] * 1000.0 + 1000.0);
-            
+
             // Apply 3rd order model
             motors[i] = motorModels[i][0]*pow(pwm, 3) + motorModels[i][1]*pow(pwm, 2) + motorModels[i][2]*pwm + motorModels[i][3];
         }
@@ -183,7 +183,7 @@ void GazeboForcesMomentsActuatorsPlugin::MotorCommandCallback(CommandMotorThrott
 
     // Save motor commands
     last_motor_message_ = *motor_msg;
-  
+
     lock.unlock();
     last_motor_message_cond_.notify_one();
 }
@@ -199,7 +199,7 @@ bool GazeboForcesMomentsActuatorsPlugin::IsValidConfig(std::string config) {
             break;
         }
     }
-    
+
     return valid;
 }
 
@@ -209,11 +209,11 @@ void GazeboForcesMomentsActuatorsPlugin::CreatePubsAndSubs() {
 
     // Subscribe to motor commands
     motor_sub_ = node_handle_->Subscribe("~/" + model_->GetName() + motor_sub_topic_, &GazeboForcesMomentsActuatorsPlugin::MotorCommandCallback, this);
-    
+
     // Connect to ROS
     std_msgs::msgs::ConnectRosToGazeboTopic connect_ros_to_gazebo_topic_msg;
     connect_ros_to_gazebo_topic_msg.set_ros_topic(motor_sub_topic_);
-    
+
     connect_ros_to_gazebo_topic_msg.set_gazebo_topic("~/" + model_->GetName() + motor_sub_topic_);
     connect_ros_to_gazebo_topic_msg.set_msgtype(std_msgs::msgs::ConnectRosToGazeboTopic::COMMAND_MOTOR_THROTTLE);
     gz_connect_ros_to_gazebo_topic_pub->Publish(connect_ros_to_gazebo_topic_msg, true);

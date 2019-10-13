@@ -136,7 +136,7 @@
       <baroSubTopic>/baro</baroSubTopic>
       <motorCommandPubTopic>/command/motor</motorCommandPubTopic>
 
-      <noise>false</noise>
+      <noise>true</noise>
 
       <mavlink_addr>INADDR_ANY</mavlink_addr>
       <mavlink_tcp_port>4560</mavlink_tcp_port>
@@ -195,7 +195,7 @@
 
     <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
         <robotNamespace></robotNamespace>
-        <gpsNoise>false</gpsNoise>
+        <gpsNoise>true</gpsNoise>
     </plugin>
 
     <plugin name='magnetometer_plugin' filename='libgazebo_magnetometer_plugin.so'>
@@ -205,14 +205,14 @@
       <randomWalk>6.4e-06</randomWalk>
       <biasCorrelationTime>600</biasCorrelationTime>
       <magTopic>/mag</magTopic>
-      <magNoise>false</magNoise>
+      <magNoise>true</magNoise>
     </plugin>
 
     <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
       <robotNamespace/>
       <pubRate>10</pubRate>
       <baroTopic>/baro</baroTopic>
-      <baroNoise>false</baroNoise>
+      <baroNoise>true</baroNoise>
     </plugin>
 
     <plugin name='gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
@@ -227,7 +227,7 @@
       <accelerometerRandomWalk>0.006</accelerometerRandomWalk>
       <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
       <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
-      <imuNoise>false</imuNoise>
+      <imuNoise>true</imuNoise>
     </plugin>
   </model>
 </sdf>

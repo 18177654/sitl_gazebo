@@ -49,6 +49,15 @@
 
     <static>0</static>
 
+    <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
+      <robotNamespace/>
+      <linkName>base_link</linkName>
+      <cdx>0.064</cdx>
+      <cdy>0.067</cdy>
+      <cdz>0.089</cdz>
+      <rho>1.225</rho>
+    </plugin>
+
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
       <robotNamespace/>
       <imuSubTopic>/imu</imuSubTopic>
@@ -57,15 +66,15 @@
       <baroSubTopic>/baro</baroSubTopic>
       <motorCommandPubTopic>/command/motor</motorCommandPubTopic>
 
-      <noise>true</noise>
+      <noise>false</noise>
 
       <mavlink_addr>INADDR_ANY</mavlink_addr>
       <mavlink_tcp_port>4560</mavlink_tcp_port>
       <enable_lockstep>true</enable_lockstep>
       <use_tcp>true</use_tcp>
 
-      <hil_mode>true</hil_mode>
-      <serialEnabled>true</serialEnabled>
+      <hil_mode>false</hil_mode>
+      <serialEnabled>false</serialEnabled>
       <hil_state_level>false</hil_state_level>
       <qgc_addr>INADDR_ANY</qgc_addr>
       <qgc_udp_port>14550</qgc_udp_port>
@@ -88,7 +97,7 @@
 
       <!-- Use maxMotorThrust for a linear motor model or motor_models for a complete 3rd order motor model -->
 
-      <!-- <maxMotorThrust>31.392</maxMotorThrust> -->
+      <!-- <maxMotorThrust>31.3813</maxMotorThrust> -->
       <motor_models>
         <motor name='motor1'>
           <motor_index>0</motor_index>
@@ -116,7 +125,7 @@
 
     <plugin name="gps_plugin" filename="libgazebo_gps_plugin.so">
         <robotNamespace></robotNamespace>
-        <gpsNoise>true</gpsNoise>
+        <gpsNoise>false</gpsNoise>
     </plugin>
 
     <plugin name='magnetometer_plugin' filename='libgazebo_magnetometer_plugin.so'>
@@ -126,14 +135,14 @@
       <randomWalk>6.4e-06</randomWalk>
       <biasCorrelationTime>600</biasCorrelationTime>
       <magTopic>/mag</magTopic>
-      <magNoise>true</magNoise>
+      <magNoise>false</magNoise>
     </plugin>
 
     <plugin name='barometer_plugin' filename='libgazebo_barometer_plugin.so'>
       <robotNamespace/>
       <pubRate>10</pubRate>
       <baroTopic>/baro</baroTopic>
-      <baroNoise>true</baroNoise>
+      <baroNoise>false</baroNoise>
     </plugin>
 
     <plugin name='gazebo_imu_plugin' filename='libgazebo_imu_plugin.so'>
@@ -148,7 +157,7 @@
       <accelerometerRandomWalk>0.006</accelerometerRandomWalk>
       <accelerometerBiasCorrelationTime>300.0</accelerometerBiasCorrelationTime>
       <accelerometerTurnOnBiasSigma>0.196</accelerometerTurnOnBiasSigma>
-      <imuNoise>true</imuNoise>
+      <imuNoise>false</imuNoise>
     </plugin>
   </model>
 </sdf>

@@ -128,6 +128,24 @@
 
     <static>0</static>
 
+    <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
+      <robotNamespace/>
+      <linkName>base_link</linkName>
+      <cdx>0.064</cdx>
+      <cdy>0.067</cdy>
+      <cdz>0.089</cdz>
+      <rho>1.225</rho>
+    </plugin>
+
+    <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
+      <robotNamespace/>
+      <linkName>payload_link</linkName>
+      <cdx>0.01</cdx>
+      <cdy>0.0</cdy>
+      <cdz>0.0</cdz>
+      <rho>1.225</rho>
+    </plugin>
+
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
       <robotNamespace/>
       <imuSubTopic>/imu</imuSubTopic>

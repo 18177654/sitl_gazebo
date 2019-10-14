@@ -293,6 +293,7 @@ link_libraries(mav_msgs nav_msgs std_msgs sensor_msgs)
 link_libraries(physics_msgs)
 
 add_library(gazebo_forces_moments_actuators_plugin SHARED src/gazebo_forces_moments_actuators_plugin.cpp)
+add_library(gazebo_forces_moments_aerodynamics_plugin SHARED src/gazebo_forces_moments_aerodynamics_plugin.cpp)
 add_library(gazebo_odometry_plugin SHARED src/gazebo_odometry_plugin.cpp)
 add_library(gazebo_geotagged_images_plugin SHARED src/gazebo_geotagged_images_plugin.cpp)
 add_library(gazebo_gps_plugin SHARED src/gazebo_gps_plugin.cpp)
@@ -314,6 +315,7 @@ add_library(gazebo_barometer_plugin SHARED src/gazebo_barometer_plugin.cpp)
 
 set(plugins
   gazebo_forces_moments_actuators_plugin
+  gazebo_forces_moments_aerodynamics_plugin
   gazebo_odometry_plugin
   gazebo_geotagged_images_plugin
   gazebo_gps_plugin

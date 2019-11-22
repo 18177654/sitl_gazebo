@@ -541,15 +541,15 @@ void GazeboMavlinkInterface::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf
 // This gets called by the world update start event.
 void GazeboMavlinkInterface::OnUpdate(const common::UpdateInfo&  /*_info*/) {
 
-  std::unique_lock<std::mutex> lock(last_imu_message_mutex_);
+//   std::unique_lock<std::mutex> lock(last_imu_message_mutex_);
 
-  if (previous_imu_seq_ > 0) {
-    while (previous_imu_seq_ == last_imu_message_.seq() && IsRunning()) {
-      last_imu_message_cond_.wait_for(lock, std::chrono::milliseconds(10));
-    }
-  }
+//   if (previous_imu_seq_ > 0) {
+//     while (previous_imu_seq_ == last_imu_message_.seq() && IsRunning()) {
+//       last_imu_message_cond_.wait_for(lock, std::chrono::milliseconds(10));
+//     }
+//   }
 
-  previous_imu_seq_ = last_imu_message_.seq();
+//   previous_imu_seq_ = last_imu_message_.seq();
 
 #if GAZEBO_MAJOR_VERSION >= 9
   common::Time current_time = world_->SimTime();

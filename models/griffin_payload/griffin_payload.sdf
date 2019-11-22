@@ -51,14 +51,14 @@
       <pose frame=''>0 0 0.05 0 0 0</pose>
       <inertial>
         <pose frame=''>0 0 0 0 0 0</pose>
-        <mass>1</mass>
+        <mass>2</mass>
         <inertia>
-          <ixx>0.00005</ixx>
+          <ixx>0.05</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00005</iyy>
+          <iyy>0.05</iyy>
           <iyz>0</iyz>
-          <izz>0.00005</izz>
+          <izz>0.05</izz>
         </inertia>
       </inertial>
       <collision name='payload_link_collision'>
@@ -128,23 +128,23 @@
 
     <static>0</static>
 
-    <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
+    <!-- <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
       <robotNamespace/>
       <linkName>base_link</linkName>
-      <cdx>0.064</cdx>
-      <cdy>0.067</cdy>
-      <cdz>0.089</cdz>
+      <cdx>0.2</cdx>
+      <cdy>0.2</cdy>
+      <cdz>0.2</cdz>
       <rho>1.225</rho>
     </plugin>
 
     <plugin name="aerodynamic_drag" filename="libgazebo_forces_moments_aerodynamics_plugin.so">
       <robotNamespace/>
       <linkName>payload_link</linkName>
-      <cdx>0.01</cdx>
+      <cdx>0.002</cdx>
       <cdy>0.0</cdy>
       <cdz>0.0</cdz>
       <rho>1.225</rho>
-    </plugin>
+    </plugin> -->
 
     <plugin name='mavlink_interface' filename='libgazebo_mavlink_interface.so'>
       <robotNamespace/>
@@ -161,8 +161,8 @@
       <enable_lockstep>true</enable_lockstep>
       <use_tcp>true</use_tcp>
 
-      <hil_mode>false</hil_mode>
-      <serialEnabled>false</serialEnabled>
+      <hil_mode>true</hil_mode>
+      <serialEnabled>true</serialEnabled>
       <hil_state_level>false</hil_state_level>
       <qgc_addr>INADDR_ANY</qgc_addr>
       <qgc_udp_port>14550</qgc_udp_port>
